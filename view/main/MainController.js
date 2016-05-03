@@ -22,10 +22,10 @@ Ext.define('Login.view.main.MainController', {
         editorForm.show();
     },
 
+    // Add a new record to the store and then pass it to the Form
     onNew: function () {
         console.log('MainController: onNew');
 
-        // Add a new record to the store and then pass it to the Form
         var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.User'));
         var store = Ext.data.StoreManager.lookup('userstore');
         store.add(newRecord);
@@ -38,5 +38,22 @@ Ext.define('Login.view.main.MainController', {
             }
         });
         editorForm.show();
+    },
+
+    // Delete the current record
+    onDelete: function () {
+        console.log('MainController: onDelete');
+
+        var userGrid = Ext.ComponentQuery.query('app-main');
+        console.log(userGrid);
+
+        if (userGrid) {
+            var record = userGrid[0].getSelection();
+            var store = Ext.data.StoreManager.lookup('userstore');
+            store.remove(record);
+        } else {
+            console.log('No record selected');
+        }
+
     }
 });

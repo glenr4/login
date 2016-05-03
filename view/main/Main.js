@@ -35,6 +35,11 @@ Ext.define('Login.view.main.Main', {
     ],
 
     buttons: [
+        {   text: 'Delete',
+            listeners: {
+                click: 'onDelete'
+            }
+        },
         {
             text: 'New',
             listeners: {
