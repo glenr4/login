@@ -11,19 +11,20 @@
     controller: 'usereditor',
     viewModel: 'usereditor',
 
+    modelValidation: true,  // link the Model's validation rules to the form
     defaultType: 'textfield',
     items: [
         {
             fieldLabel: 'User  Name',
             name: 'userName',
-            allowBlank: false,
+            //allowBlank: false,
             bind: {
                 value: '{record.userName}'
             }
         }, {
             fieldLabel: 'First  Name',
             name: 'firstName',
-            allowBlank: false,
+            //allowBlank: false,
             bind: {
                 value: '{record.firstName}'
             }
@@ -31,7 +32,7 @@
         {
             fieldLabel: 'Last Name',
             name: 'lastName',
-            allowBlank: false,
+            //allowBlank: false,
             bind: {
                 value: '{record.lastName}'
             }
@@ -39,7 +40,7 @@
         {
             fieldLabel: 'Email',
             name: 'email',
-            allowBlank: false,
+            //allowBlank: false,
             bind: {
                 value: '{record.email}'
             }
@@ -47,7 +48,7 @@
         {
             fieldLabel: 'Password',
             name: 'password',
-            allowBlank: false,
+            //allowBlank: false,
             bind: {
                 value: '{record.password}'
             }
@@ -72,12 +73,7 @@
             }
         }
     ],
-    //listeners: {
-    //    afterrender: 'onAfterRender',
-    //    dirtychange: 'onDirtyChange'
-    //},
-    //width: 200,
-    //height: 200,
+
     floating: true,
     padding: 10
 });

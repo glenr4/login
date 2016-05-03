@@ -18,8 +18,6 @@ Ext.define('Login.view.main.Main', {
         'Login.view.main.MainModel',
 
         'Login.view.main.editor.Editor'
-        //,
-        //'Login.view.main.List'
     ],
 
     controller: 'main',
@@ -35,11 +33,6 @@ Ext.define('Login.view.main.Main', {
     ],
 
     buttons: [
-        //{   text: 'Delete',
-        //    listeners: {
-        //        click: 'onDelete'
-        //    }
-        //},
         {
             text: 'New',
             listeners: {
@@ -50,8 +43,6 @@ Ext.define('Login.view.main.Main', {
 
     bind: {
         store: '{users}'
-        //,
-        //title: '{myTitle}'
     },
 
     listeners: {
@@ -74,14 +65,6 @@ Ext.define('Login.view.main.Main', {
         },
         iconCls: 'fa-th-list'
     },
-
-    //tabBar: {
-    //    flex: 1,
-    //    layout: {
-    //        align: 'stretch',
-    //        overflowHandler: 'none'
-    //    }
-    //},
 
     responsiveConfig: {
         tall: {
