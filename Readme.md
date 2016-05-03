@@ -1,3 +1,7 @@
+# Disable in app.js to require login
+mainView: 'Login.view.main.Main'
+
+
 # ./controller
 
 This folder contains the application's global controllers. ViewControllers are located

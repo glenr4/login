@@ -1,7 +1,6 @@
 ﻿Ext.define('Login.view.main.editor.Editor', {
     extend: 'Ext.form.Panel',
     xtype: 'usereditorview',
-    //reference: 'usereditorviewref',
 
     requires: [
         'Login.view.main.editor.EditorModel',
@@ -17,14 +16,12 @@
         {
             fieldLabel: 'User  Name',
             name: 'userName',
-            //allowBlank: false,
             bind: {
                 value: '{record.userName}'
             }
         }, {
             fieldLabel: 'First  Name',
             name: 'firstName',
-            //allowBlank: false,
             bind: {
                 value: '{record.firstName}'
             }
@@ -32,7 +29,6 @@
         {
             fieldLabel: 'Last Name',
             name: 'lastName',
-            //allowBlank: false,
             bind: {
                 value: '{record.lastName}'
             }
@@ -40,7 +36,6 @@
         {
             fieldLabel: 'Email',
             name: 'email',
-            //allowBlank: false,
             bind: {
                 value: '{record.email}'
             }
@@ -48,7 +43,7 @@
         {
             fieldLabel: 'Password',
             name: 'password',
-            //allowBlank: false,
+            inputType: 'password',
             bind: {
                 value: '{record.password}'
             }
