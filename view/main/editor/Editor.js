@@ -1,15 +1,15 @@
 ﻿Ext.define('Login.view.main.editor.Editor', {
     extend: 'Ext.form.Panel',
-    xtype: 'personeditorview',
-    //reference: 'personeditorviewref',
+    xtype: 'usereditorview',
+    //reference: 'usereditorviewref',
 
     requires: [
         'Login.view.main.editor.EditorModel',
         'Login.view.main.editor.EditorController'
     ],
 
-    controller: 'personeditor',
-    viewModel: 'personeditor',
+    controller: 'usereditor',
+    viewModel: 'usereditor',
 
     defaultType: 'textfield',
     items: [
@@ -57,7 +57,7 @@
         {
             text: 'Back',
             listeners : {
-                click: 'onBackToGrid'
+                click: 'onBack'
             }
         },
         {
@@ -67,10 +67,10 @@
             }
         }
     ],
-    listeners: {
-        afterrender: 'onAfterRender',
-        dirtychange: 'onDirtyChange'
-    },
+    //listeners: {
+    //    afterrender: 'onAfterRender',
+    //    dirtychange: 'onDirtyChange'
+    //},
     //width: 200,
     //height: 200,
     floating: true,

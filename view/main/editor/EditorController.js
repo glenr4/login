@@ -1,35 +1,24 @@
 ﻿Ext.define('Login.view.main.editor.EditorController', {
     extend: 'Ext.app.ViewController',
 
-    alias: 'controller.personeditor',
+    alias: 'controller.usereditor',
 
-    init: function () {
-        console.log("EditorController init");
-    },
-    onAfterRender: function (cmpt) {
-        console.log('EditorController: onAfterRender');
-    },
-    onDirtyChange: function(cmpt){
-        console.log('onDirtyChange');
-        
-    },
-    onBackToGrid: function () {
-        console.log('EditorController: onBackToGrid');
+    onBack: function () {
+        console.log('EditorController: onBack');
 
         var self = this;
         var form = this.getView().getForm();
-        var store = Ext.data.StoreManager.lookup('personstore');
+        var store = Ext.data.StoreManager.lookup('userstore');
 
-        console.log(this.getView().getForm().isDirty());
-        console.log(form.isDirty());
+        //console.log(this.getView().getForm().isDirty());
+        //console.log(form.isDirty());
 
         var viewModel = this.getViewModel();
         var record = viewModel.get('record'); // from viewmodel
-        console.log("** record**");
-        console.log(record.dirty);
+        //console.log("** record**");
+        //console.log(record.dirty);
 
         if (record.dirty) { // must use this test with data binding
-            //if (form.isDirty()) {
             Ext.Msg.show({
                 title: 'Save Changes?',
                 message: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
@@ -40,12 +29,12 @@
                         console.log('Yes pressed');
 
                         self.syncStore(store);
-                        self.loadPreviousTab();
+                        self.close();
                     } else if (btn === 'no') {
                         console.log('No pressed');
 
                         store.rejectChanges();
-                        self.loadPreviousTab();
+                        self.close();
                     } else {
                         console.log('Cancel pressed');
                         // Stay on the form
@@ -53,7 +42,7 @@
                 }
             });
         } else {
-            self.loadPreviousTab();
+            self.close();
         };
     },
     syncStore: function (store) {
@@ -75,22 +64,14 @@
     onSave: function () {
         console.log("EditorController: onSave");
 
-        var store = Ext.data.StoreManager.lookup('personstore');
+        var store = Ext.data.StoreManager.lookup('userstore');
         this.syncStore(store);
-        this.loadPreviousTab();
+        this.close();
     },
-    loadPreviousTab: function () {
-        // get tabs control
-        var tabs = Ext.ComponentQuery.query('app-main');
-        // get current tab i.e. the editor
-        var currentTab = tabs[0].getActiveTab();
-        // remove it 
-        tabs[0].remove(currentTab);
-        // replace/with the one we have in global area
-        var previoustab = Login.Globals.getCurrentab();
-        var newtab = tabs[0].add(previoustab);
-        // effectively 'shows' the new tab
-        tabs[0].setActiveTab(newtab);
+    close: function () {
+        console.log('EditorController: close');
+        var view = this.getView();
+        view.destroy();
     }
 });
 

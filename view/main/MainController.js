@@ -12,7 +12,7 @@ Ext.define('Login.view.main.MainController', {
     onRowClick: function (cmp, record) {
         console.log('MainController: onRowClick');
         //var editorForm = Ext.create({
-        //    xtype: 'personeditorview'
+        //    xtype: 'usereditorview'
         //});
 
         var editorForm = Ext.create('Login.view.main.editor.Editor', {
