@@ -11,14 +11,29 @@ Ext.define('Login.view.main.MainController', {
 
     onRowClick: function (cmp, record) {
         console.log('MainController: onRowClick');
-        //var editorForm = Ext.create({
-        //    xtype: 'usereditorview'
-        //});
 
         var editorForm = Ext.create('Login.view.main.editor.Editor', {
             viewModel: {
                 data: {
                     record: record
+                }
+            }
+        });
+        editorForm.show();
+    },
+
+    onNew: function () {
+        console.log('MainController: onNew');
+
+        // Add a new record to the store and then pass it to the Form
+        var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.User'));
+        var store = Ext.data.StoreManager.lookup('userstore');
+        store.add(newRecord);
+
+        var editorForm = Ext.create('Login.view.main.editor.Editor', {
+            viewModel: {
+                data: {
+                    record: newRecord
                 }
             }
         });

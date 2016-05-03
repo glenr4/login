@@ -34,6 +34,15 @@ Ext.define('Login.view.main.Main', {
         { text: 'Email', dataIndex: 'email' }
     ],
 
+    buttons: [
+        {
+            text: 'New',
+            listeners: {
+                click: 'onNew'
+            }
+        }
+    ],
+
     bind: {
         store: '{users}'
         //,
