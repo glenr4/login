@@ -15,7 +15,10 @@ Ext.define('Login.view.main.Main', {
         'Ext.window.MessageBox',
 
         'Login.view.main.MainController',
-        'Login.view.main.MainModel'//,
+        'Login.view.main.MainModel',
+
+        'Login.view.main.editor.Editor'
+        //,
         //'Login.view.main.List'
     ],
 

@@ -5,7 +5,7 @@
     storeId: 'userstore',
     autoLoad: true,
 
-    Proxy: {
+    proxy: {
         type: 'localstorage',
         id: 'userstorage',
         reader: {

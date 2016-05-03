@@ -9,13 +9,19 @@ Ext.define('Login.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    },
+    onRowClick: function (cmp, record) {
+        console.log('MainController: onRowClick');
+        //var editorForm = Ext.create({
+        //    xtype: 'personeditorview'
+        //});
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
+        var editorForm = Ext.create('Login.view.main.editor.Editor', {
+            viewModel: {
+                data: {
+                    record: record
+                }
+            }
+        });
+        editorForm.show();
     }
 });
