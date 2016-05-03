@@ -9,6 +9,7 @@ Ext.define('Login.view.main.MainController', {
 
     alias: 'controller.main',
 
+    // Open in a form for editing
     onRowClick: function (cmp, record) {
         console.log('MainController: onRowClick');
 
@@ -38,22 +39,22 @@ Ext.define('Login.view.main.MainController', {
             }
         });
         editorForm.show();
-    },
-
-    // Delete the current record
-    onDelete: function () {
-        console.log('MainController: onDelete');
-
-        var userGrid = Ext.ComponentQuery.query('app-main');
-        console.log(userGrid);
-
-        if (userGrid) {
-            var record = userGrid[0].getSelection();
-            var store = Ext.data.StoreManager.lookup('userstore');
-            store.remove(record);
-        } else {
-            console.log('No record selected');
-        }
-
     }
+    //,
+
+    //// Delete the current record
+    //onDelete: function () {
+    //    console.log('MainController: onDelete');
+
+    //    var userGrid = Ext.ComponentQuery.query('app-main');
+    //    console.log(userGrid);
+
+    //    var record = userGrid[0].getSelection();
+    //    if (record) {
+    //        var store = Ext.data.StoreManager.lookup('userstore');
+    //        store.remove(record);
+    //    } else {
+    //        console.log('No record selected');
+    //    }
+    //}
 });

@@ -3,6 +3,8 @@
 
     alias: 'controller.usereditor',
 
+    // TODO: refactor so that the Msg window is a mixin
+
     onBack: function () {
         console.log('EditorController: onBack');
 
@@ -10,13 +12,8 @@
         var form = this.getView().getForm();
         var store = Ext.data.StoreManager.lookup('userstore');
 
-        //console.log(this.getView().getForm().isDirty());
-        //console.log(form.isDirty());
-
         var viewModel = this.getViewModel();
         var record = viewModel.get('record'); // from viewmodel
-        //console.log("** record**");
-        //console.log(record.dirty);
 
         if (record.dirty) { // must use this test with data binding
             Ext.Msg.show({
@@ -72,6 +69,42 @@
         console.log('EditorController: close');
         var view = this.getView();
         view.destroy();
+    },
+
+    // Delete the current record
+    onDelete: function () {
+        console.log('MainController: onDelete');
+
+        var self = this;
+        Ext.Msg.show({
+            title: 'Delete Record?',
+            message: 'You are about to PERMANANTLY DELETE this user, are you sure you want to do this?',
+            buttons: Ext.Msg.YESNOCANCEL,
+            icon: Ext.Msg.QUESTION,
+            fn: function (btn) {
+                if (btn === 'yes') {
+                    console.log('Yes pressed');
+
+                    var userGrid = Ext.ComponentQuery.query('app-main');
+                    var record = userGrid[0].getSelection();
+                    if (record) {
+                        var store = Ext.data.StoreManager.lookup('userstore');
+                        store.remove(record);
+                    } else {
+                        console.log('No record selected');
+                    }
+
+                    self.close();
+                } else if (btn === 'no') {
+                    console.log('No pressed');
+
+                    self.close();
+                } else {
+                    console.log('Cancel pressed');
+                    // Stay on the form
+                }
+            }
+        });
     }
 });
 

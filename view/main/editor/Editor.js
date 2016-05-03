@@ -59,6 +59,11 @@
             listeners : {
                 click: 'onBack'
             }
+        }, {
+            text: 'Delete',
+            listeners: {
+                click: 'onDelete'
+            }
         },
         {
             text: 'Save',
