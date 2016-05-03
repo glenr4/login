@@ -39,5 +39,19 @@ Ext.define('Login.view.main.MainController', {
             }
         });
         editorForm.show();
+    },
+
+    // Logout
+    onLogout: function () {
+        // Remove the localStorage key/value
+        localStorage.removeItem('TutorialLoggedIn');
+
+        // Remove Main View
+        this.getView().destroy();
+
+        // Add the Login Window
+        Ext.create({
+            xtype: 'loginview'
+        });
     }
 });

@@ -23,6 +23,10 @@ Ext.define('Login.view.main.Main', {
     controller: 'main',
     viewModel: 'main',
 
+    // Operate as our application’s viewport. 
+    // This way, the Main view takes up all available width and height within the browser.
+    plugins: 'viewport',    
+    
     ui: 'navigation',
 
     columns: [
@@ -63,7 +67,13 @@ Ext.define('Login.view.main.Main', {
             },
             flex: 0
         },
-        iconCls: 'fa-th-list'
+        iconCls: 'fa-th-list',
+        items: [{
+            xtype: 'button',
+            text: 'Logout',
+            margin: '10 0',
+            handler: 'onLogout'
+        }]
     },
 
     responsiveConfig: {
