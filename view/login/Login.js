@@ -4,7 +4,8 @@
     
     requires: [
         'Login.view.login.LoginModel',
-        'Login.view.login.LoginController',
+        'Login.view.login.LoginController'
+        //,
         //'Ext.form.Panel'    // is this really required?
     ],
 
@@ -37,7 +38,7 @@
         }],
         buttons: [{
             text: 'Login',
-            formBind: true,
+            formBind: true,     // on enable if form field values are valid
             listeners: {
                 click: 'onLoginClick'
             }

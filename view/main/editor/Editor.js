@@ -63,6 +63,7 @@
         },
         {
             text: 'Save',
+            formBind: true,
             listeners: {
                 click: 'onSave'
             }

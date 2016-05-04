@@ -44,7 +44,7 @@ Ext.define('Login.view.main.MainController', {
     // Logout
     onLogout: function () {
         // Remove the localStorage key/value
-        localStorage.removeItem('TutorialLoggedIn');
+        localStorage.removeItem('loginValid');
 
         // Remove Main View
         this.getView().destroy();

@@ -15,18 +15,35 @@
         var viewModel = this.getViewModel();
         var record = viewModel.get('record'); // from viewmodel
 
+        console.log(form.isValid());
+
         if (record.dirty) { // must use this test with data binding
             Ext.Msg.show({
                 title: 'Save Changes?',
                 message: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
                 buttons: Ext.Msg.YESNOCANCEL,
                 icon: Ext.Msg.QUESTION,
+                beforeshow: function(){
+                    console.log('beforeshow');
+                },
+                focus: function(){
+                    console.log('focus');
+                },
+                show: function () {
+                    console.log('Msg show event');
+                    if (!form.isValid()) {
+                        yes.disable();
+                    }
+                },
                 fn: function (btn) {
                     if (btn === 'yes') {
                         console.log('Yes pressed');
+                        if (form.isValid()) {
+                            console.log('Form valid');
 
-                        self.syncStore(store);
-                        self.close();
+                            self.syncStore(store);
+                            self.close();
+                        }
                     } else if (btn === 'no') {
                         console.log('No pressed');
 

@@ -9,7 +9,7 @@
         // a server-side lookup. We'll just move forward for the sake of this example.
 
         // Set the localStorage value to true
-        localStorage.setItem("TutorialLoggedIn", true);
+        localStorage.setItem("loginValid", true);
 
         // Remove Login Window
         this.getView().destroy();

@@ -23,10 +23,10 @@ Ext.define('Login.Application', {
         var loggedIn;
 
         // Check to see the current value of the localStorage key
-        loggedIn = localStorage.getItem("TutorialLoggedIn");
+        loggedIn = localStorage.getItem("loginValid");
 
-        // This ternary operator determines the value of the TutorialLoggedIn key.
-        // If TutorialLoggedIn isn't true, we display the login window,
+        // This ternary operator determines the value of the loginValid key.
+        // If loginValid isn't true, we display the login window,
         // otherwise, we display the main view
         Ext.create({
             xtype: loggedIn ? 'app-main' : 'loginview'
