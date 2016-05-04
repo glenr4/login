@@ -50,7 +50,7 @@ Ext.define('Login.view.main.Main', {
     },
 
     listeners: {
-            rowdblclick: 'onRowClick'
+        rowdblclick: 'onRowClick'
     },
 
     tabBarHeaderPosition: 1,
