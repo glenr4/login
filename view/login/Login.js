@@ -5,8 +5,6 @@
     requires: [
         'Login.view.login.LoginModel',
         'Login.view.login.LoginController'
-        //,
-        //'Ext.form.Panel'    // is this really required?
     ],
 
     controller: 'login',
@@ -22,20 +20,19 @@
         reference: 'form',
         items: [{
             xtype: 'textfield',
+            reference: 'username',
             name: 'username',
             fieldLabel: 'Username',
             allowBlank: false
         }, {
             xtype: 'textfield',
+            reference: 'password',
             name: 'password',
             inputType: 'password',
             fieldLabel: 'Password',
             allowBlank: false
-        }, {
-            xtype: 'displayfield',
-            hideEmptyLabel: false,
-            value: 'Enter any non-blank password'
-        }],
+        }
+],
         buttons: [{
             text: 'Login',
             formBind: true,     // on enable if form field values are valid
@@ -45,7 +42,6 @@
         }]
     },
 
-    //floating: true,
     bodyPadding: 10
 });
 

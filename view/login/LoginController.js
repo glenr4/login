@@ -7,13 +7,11 @@
         console.log('LoginController: onLoginClick');
         //Check user credentials
         var store = Ext.data.StoreManager.lookup('userstore');
-        console.log(store);
-
-        var userName = 'whodat';
-        var password = '123';
+        var username = this.lookupReference('username').value;
+        var password = this.lookupReference('password').value;
 
         var match = store.findBy(function (record, id) {
-            if (record.get('userName') == userName &&
+            if (record.get('userName') == username &&
                 record.get('password') == password) {
                 console.log('match: true');
                 return true;
