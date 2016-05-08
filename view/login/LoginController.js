@@ -22,6 +22,7 @@
         if (match != -1) {
             console.log('if match true');
             // Set the localStorage value to true
+            // In a real App use a Store and Model
             localStorage.setItem("loginValid", true);
 
             // Remove Login Window
@@ -37,7 +38,7 @@
                 title: 'Login Details Not Valid',
                 message: 'Please check your user name and password and try again.',
                 buttons: Ext.Msg.OK,
-                icon: Ext.Msg.WARNING,
+                icon: Ext.Msg.WARNING
             });
         };
     }

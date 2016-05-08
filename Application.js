@@ -10,9 +10,8 @@ Ext.define('Login.Application', {
 
     requires: [
         'Login.view.main.Main',
-        'Login.view.login.Login'
-        //,
-        //'Login.controller.Messages'
+        'Login.view.login.Login',
+        'Login.util.Msg'
     ],
 
     stores: [

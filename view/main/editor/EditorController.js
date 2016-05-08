@@ -15,45 +15,76 @@
         var viewModel = this.getViewModel();
         var record = viewModel.get('record'); // from viewmodel
 
+        var formValid = form.isValid();
         console.log(form.isValid());
 
         if (record.dirty) { // must use this test with data binding
-            Ext.Msg.show({
+            //Ext.Msg.show({
+            Login.util.Msg.show({
                 title: 'Save Changes?',
                 message: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
-                buttons: Ext.Msg.YESNOCANCEL,
+               // buttons: Ext.Msg.YESNOCANCEL,
                 icon: Ext.Msg.QUESTION,
-                beforeshow: function(){
-                    console.log('beforeshow');
-                },
-                focus: function(){
-                    console.log('focus');
-                },
-                show: function () {
-                    console.log('Msg show event');
-                    if (!form.isValid()) {
-                        yes.disable();
-                    }
-                },
-                fn: function (btn) {
-                    if (btn === 'yes') {
-                        console.log('Yes pressed');
-                        if (form.isValid()) {
-                            console.log('Form valid');
+                buttons: [
+                    {
+                        text: 'Yes',
+                        itemId: 'yes',
+                        //ui: 'action',
+                        //hidden: false,
+                        //disable: formValid,
+                        //autoShow: true,
+                        handler: function(){
+                            console.log('Yes pressed');
+                            if (form.isValid()) {
+                                console.log('Form valid');
 
-                            self.syncStore(store);
+                                self.syncStore(store);
+                                self.close();
+                            }
+                        }
+                    },{
+                        text: 'No',
+                        itemId: 'no',
+                        //ui: 'action',
+                        //hidden: false,
+                        handler: function(){
+                            console.log('No pressed');
+
+                            store.rejectChanges();
                             self.close();
                         }
-                    } else if (btn === 'no') {
-                        console.log('No pressed');
-
-                        store.rejectChanges();
-                        self.close();
-                    } else {
-                        console.log('Cancel pressed');
-                        // Stay on the form
+                    },{
+                        text: 'Cancel',
+                        itemId: 'cancel',
+                        //ui: 'action',
+                        //hidden: false,
+                        handler: function(){
+                            console.log('Cancel pressed');
+                            // Stay on the form
+                        }
                     }
-                }
+                ],
+                scope: this
+
+                //fn: function (btn) {
+                //    if (btn === 'yes') {
+                //        console.log('Yes pressed');
+                //        if (form.isValid()) {
+                //            console.log('Form valid');
+
+                //            self.syncStore(store);
+                //            self.close();
+                //        }
+                //    } else if (btn === 'no') {
+                //        console.log('No pressed');
+
+                //        store.rejectChanges();
+                //        self.close();
+                //    } else {
+                //        console.log('Cancel pressed');
+                //        // Stay on the form
+                //    }
+                //}
             });
         } else {
             self.close();
