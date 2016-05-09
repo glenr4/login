@@ -23,68 +23,70 @@
             Login.util.Msg.show({
                 title: 'Save Changes?',
                 message: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
-               // buttons: Ext.Msg.YESNOCANCEL,
                 icon: Ext.Msg.QUESTION,
-                buttons: [
-                    {
-                        text: 'Yes',
-                        itemId: 'yes',
-                        //ui: 'action',
-                        //hidden: false,
-                        //disable: formValid,
-                        //autoShow: true,
-                        handler: function(){
-                            console.log('Yes pressed');
-                            if (form.isValid()) {
-                                console.log('Form valid');
 
-                                self.syncStore(store);
-                                self.close();
-                            }
-                        }
-                    },{
-                        text: 'No',
-                        itemId: 'no',
-                        //ui: 'action',
-                        //hidden: false,
-                        handler: function(){
-                            console.log('No pressed');
+                // Custom buttons not working
+                //buttons: [
+                //    {
+                //        text: 'Yes',
+                //        itemId: 'yes',
+                //        //ui: 'action',
+                //        //hidden: false,
+                //        //disable: formValid,
+                //        //autoShow: true,
+                //        handler: function(){
+                //            console.log('Yes pressed');
+                //            if (form.isValid()) {
+                //                console.log('Form valid');
 
-                            store.rejectChanges();
-                            self.close();
-                        }
-                    },{
-                        text: 'Cancel',
-                        itemId: 'cancel',
-                        //ui: 'action',
-                        //hidden: false,
-                        handler: function(){
-                            console.log('Cancel pressed');
-                            // Stay on the form
-                        }
-                    }
-                ],
-                scope: this
+                //                self.syncStore(store);
+                //                self.close();
+                //            }
+                //        }
+                //    },{
+                //        text: 'No',
+                //        itemId: 'no',
+                //        //ui: 'action',
+                //        //hidden: false,
+                //        handler: function(){
+                //            console.log('No pressed');
 
-                //fn: function (btn) {
-                //    if (btn === 'yes') {
-                //        console.log('Yes pressed');
-                //        if (form.isValid()) {
-                //            console.log('Form valid');
-
-                //            self.syncStore(store);
+                //            store.rejectChanges();
                 //            self.close();
                 //        }
-                //    } else if (btn === 'no') {
-                //        console.log('No pressed');
-
-                //        store.rejectChanges();
-                //        self.close();
-                //    } else {
-                //        console.log('Cancel pressed');
-                //        // Stay on the form
+                //    },{
+                //        text: 'Cancel',
+                //        itemId: 'cancel',
+                //        //ui: 'action',
+                //        //hidden: false,
+                //        handler: function(){
+                //            console.log('Cancel pressed');
+                //            // Stay on the form
+                //        }
                 //    }
-                //}
+                //],
+                //scope: this
+
+                buttons: Ext.Msg.YESNOCANCEL,
+                fn: function (btn) {
+                    if (btn === 'yes') {
+                        console.log('Yes pressed');
+                        if (form.isValid()) {
+                            console.log('Form valid');
+
+                            self.syncStore(store);
+                            self.close();
+                        }
+                    } else if (btn === 'no') {
+                        console.log('No pressed');
+
+                        store.rejectChanges();
+                        self.close();
+                    } else {
+                        console.log('Cancel pressed');
+                        // Stay on the form
+                    }
+                }
             });
         } else {
             self.close();
@@ -124,7 +126,8 @@
         console.log('MainController: onDelete');
 
         var self = this;
-        Ext.Msg.show({
+        //Ext.Msg.show({
+        Login.util.Msg.show({
             title: 'Delete Record?',
             message: 'You are about to PERMANANTLY DELETE this user, are you sure you want to do this?',
             buttons: Ext.Msg.YESNOCANCEL,
