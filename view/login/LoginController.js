@@ -31,6 +31,8 @@
             // Add the main view to the viewport
             Ext.create({
                 xtype: 'app-main'
+                //,     // Does not work
+                //scrollable: false
             });
         } else {
             console.log('if match false');

@@ -3,6 +3,7 @@
     idProperty: 'userId',
 
     fields: [
+        { name: 'userId'},
         { name: 'userName' },
         { name: 'firstName' },
         { name: 'lastName' },

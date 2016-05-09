@@ -29,6 +29,15 @@ Ext.define('Login.view.main.Main', {
     
     ui: 'navigation',
 
+    //dockedItems: [{
+    //    xtype: 'pagingtoolbar',
+    //    //bind: {
+    //    store: 'userstore',
+    //    //},
+    //    dock: 'bottom',
+    //    displayInfo: true
+    //}],
+
     columns: [
         { text: 'User Name', dataIndex: 'userName' },
         { text: 'First Name', dataIndex: 'firstName' },
