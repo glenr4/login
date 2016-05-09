@@ -43,15 +43,41 @@ Ext.define('Login.view.main.MainController', {
 
     // Logout
     onLogout: function () {
-        // Remove the localStorage key/value
-        localStorage.removeItem('loginValid');
+        // Confirm logout
+        //confirm: function (cfg, message, fn, scope) {
+        //Login.util.Msg.confirm({
+        //    buttons: Ext.Msg.YESNO,
+        //    message: 'Do you want to logout?',
+        //    handler: this.logout(id)
+        //}
+        // this should be outside cfg but does not work as expected
+        //        'Do you want to logout?',
+        //this.logout(id),
+        //this
+        //)
+        var view = this.getView();
 
-        // Remove Main View
-        this.getView().destroy();
+        Login.util.Msg.show({
+            buttons: Ext.Msg.YESNO,
+            title: 'Please Confirm',
+            message: 'Do you want to logout?',
+            icon: Ext.Msg.QUESTION,
+            fn: function (btn) {
+                console.log(btn);
+                if (btn === 'yes') {
+                    console.log("MainController: Logout: yes clicked");
+                    // Remove the localStorage key/value
+                    localStorage.removeItem('loginValid');
 
-        // Add the Login Window
-        Ext.create({
-            xtype: 'loginview'
-        });
+                    // Remove Main View
+                    view.destroy();
+
+                    // Add the Login Window
+                    Ext.create({
+                        xtype: 'loginview'
+                    });
+                }
+            }
+        })
     }
 });
