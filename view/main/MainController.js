@@ -41,6 +41,99 @@ Ext.define('Login.view.main.MainController', {
         editorForm.show();
     },
 
+    // testing only
+    onGetFilters: function () {
+        console.log("MainController: onGetFilters");
+        var view = this.getView();
+        var store = view.getStore();
+
+        var filters = store.getFilters();
+        console.log(filters);
+    },
+
+    // Display next page of records
+    onNextPage: function () {
+        console.log('MainController: onNextPage');
+        var viewModel = this.getViewModel();
+        //console.log(viewModel);
+
+        //var store = Ext.data.StoreManager.lookup('userstore');
+        var view = this.getView();
+        console.log('view');
+        console.log(view);
+
+        var store = view.getStore();
+        console.log('store');
+        console.log(store);
+        console.log(Ext.getClassName(store));
+
+        var filters = store.getFilters();
+        console.log(filters);
+
+        console.log('Clear filters');
+        var filters = store.getFilters();
+        console.log(filters);
+        store.clearFilter();
+        var filters = store.getFilters();
+        console.log(filters);
+
+
+        var data = viewModel.getData();
+        var range = data.lastRow - data.firstRow + 1;
+        //console.log(data);
+        data.firstRow += range;
+        data.lastRow += range;
+
+        console.log(data);
+        //store.reload();   // cannot use on chained store
+        console.log('addFilter');
+        console.log(data.firstRow);
+        console.log(data.lastRow);
+        store.addFilter([
+
+            // does not work either
+            function (record) {
+                if (record.userId >= 10 && record.userId <= 19) {
+                    return record;
+                }
+            }
+
+            ////Does not work
+            //{
+            //    property: 'userId',
+            //    operator: ">=",
+            //    value: data.firstRow
+            //},
+            //{
+            //    property: 'userId',
+            //    operator: "<=",
+            //    value: data.lastRow
+            //}
+        ]);
+        var filters = store.getFilters();
+        console.log(filters);
+    },
+
+    // Display previous page of records
+    onPrevPage: function () { 
+        console.log('MainController: onNextPage');
+        var viewModel = this.getViewModel();
+        //console.log(viewModel);
+
+        var store = Ext.data.StoreManager.lookup('userstore');
+        //console.log(store);
+
+        var data = viewModel.getData();
+        var range = data.lastRow - data.firstRow;
+        //console.log(data);
+        data.firstRow -= range;
+        data.lastRow -= range;
+
+        console.log(data);
+        //store.reload();   // cannot use on chained store
+    },
+
+
     // Logout
     onLogout: function () {
         // Confirm logout

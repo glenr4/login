@@ -126,6 +126,7 @@
         console.log('MainController: onDelete');
 
         var self = this;
+        
         //Ext.Msg.show({
         Login.util.Msg.show({
             title: 'Delete Record?',
@@ -141,6 +142,8 @@
                     if (record) {
                         var store = Ext.data.StoreManager.lookup('userstore');
                         store.remove(record);
+                        var store = Ext.data.StoreManager.lookup('userstore');
+                        self.syncStore(store);
                     } else {
                         console.log('No record selected');
                     }

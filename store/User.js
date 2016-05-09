@@ -21,10 +21,10 @@
     },
 
     data: [
-        { userId: 1, userName: 'whodat', firstName: 'Whois', lastName: 'That', email: 'blah@gmail.com', password: '123' },
+        { userId: 1, userName: 'whodat', firstName: 'Whois', lastName: 'That', email: 'blah@gmail.com', password: '1234' },
         { userId: 2, userName: 'me', firstName: 'Me', lastName: 'Myself', email: 'blah@gmail.com', password: '123' },
-        { userId: 3, userName: 'guy', firstName: 'That', lastName: 'Guy', email: 'blah@gmail.com', password: '123' },
-        { userId: 4, userName: 'smithy', firstName: 'John', lastName: 'Smith', email: 'blah@gmail.com', password: '123' },
+        { userId: 3, userName: 'guy', firstName: 'That', lastName: 'Guy', email: 'blah@gmail.com', password: '1234' },
+        { userId: 4, userName: 'smithy', firstName: 'John', lastName: 'Smith', email: 'blah@gmail.com', password: '1234' },
         { userId: 5, userName: 'UserName5', firstName: 'User', lastName: 'Name5', email: 'UserName5@gmail.com', password: '123' },
         { userId: 6, userName: 'UserName6', firstName: 'User', lastName: 'Name6', email: 'UserName6@gmail.com', password: '123' },
         { userId: 7, userName: 'UserName7', firstName: 'User', lastName: 'Name7', email: 'UserName7@gmail.com', password: '123' },

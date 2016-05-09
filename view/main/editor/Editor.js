@@ -14,6 +14,12 @@
     defaultType: 'textfield',
     items: [
         {
+            fieldLabel: 'User  ID',
+            name: 'userId',
+            bind: {
+                value: '{record.userId}'
+            }
+        }, {
             fieldLabel: 'User  Name',
             name: 'userName',
             bind: {

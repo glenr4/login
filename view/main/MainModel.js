@@ -6,17 +6,10 @@ Ext.define('Login.view.main.MainModel', {
     requires: ['Login.model.User'],
 
     data: {
-        name: 'Login'
-        //,
-
-        //loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        name: 'Login',
+        firstRow: 0,
+        lastRow: 9
     },
-
-    //stores: {
-    //    users: {
-    //        source: 'userstore'
-    //    }
-    //}
 
     // Filtering code
     stores: {
@@ -24,16 +17,18 @@ Ext.define('Login.view.main.MainModel', {
             source: 'userstore', // this is the id field from the store
             
             // limit the number of records per page
+            
             filters: [
-                {
-                    property : 'userId',
-                    operator : ">=",
-                    value: 0
-                },
+                //// cannot have two filters on the same property, the last object wins
+                // {
+                //    property : 'userId',
+                //    operator : ">=",
+                //    value: '{firstRow}'
+                // },
                 {
                     property : 'userId',
                     operator : "<=",
-                    value: 10
+                    value: '{lastRow}'
                 }
             ],
             sorters : [{

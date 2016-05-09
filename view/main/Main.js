@@ -26,7 +26,7 @@ Ext.define('Login.view.main.Main', {
     // Operate as our application’s viewport. 
     // This way, the Main view takes up all available width and height within the browser.
     plugins: 'viewport',    
-    
+    autoLoad: true,
     ui: 'navigation',
 
     //dockedItems: [{
@@ -47,11 +47,30 @@ Ext.define('Login.view.main.Main', {
 
     buttons: [
         {
+            text: 'Prev. Page',
+            listeners: {
+                click: 'onPrevPage'
+            }
+        },
+        {
+            text: 'Next Page',
+            listeners: {
+                click: 'onNextPage'
+            }
+        },
+        {
             text: 'New',
             listeners: {
                 click: 'onNew'
             }
+        },
+        {
+            text: 'Get Filters',
+            listeners: {
+                click: 'onGetFilters'
+            }
         }
+
     ],
 
     bind: {
