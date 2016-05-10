@@ -3,11 +3,11 @@ Ext.define('Login.view.admin.AdminModel', {
 
     alias: 'viewmodel.admin',
 
-    requires: ['Login.model.User'],
+    requires: ['Login.model.CurrentUser'],
 
     stores: {
-        users: {
-            source: 'userstore' // this is the id field from the store
+        currentuser: {
+            source: 'currentuserstore' // this is the id field from the store
         }
     }
 });

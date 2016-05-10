@@ -18,7 +18,6 @@
     plugins: 'viewport',
     autoLoad: true,
     ui: 'navigation',
-    //title: 'Admin',
 
     bind: {
         store: '{users}'

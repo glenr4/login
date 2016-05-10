@@ -128,6 +128,7 @@ Ext.define('Login.view.main.MainController', {
 
 
     // Logout
+    //TODO: not working with sessionstorage yet
     onLogout: function () {
         var view = this.getView();
 
@@ -141,7 +142,13 @@ Ext.define('Login.view.main.MainController', {
                 if (btn === 'yes') {
                     console.log("MainController: Logout: yes clicked");
                     // Remove the localStorage key/value
-                    localStorage.removeItem('loginValid');
+                    //localStorage.removeItem('loginValid');
+                    var store = Ext.data.StoreManager.lookup('currentuserstore');
+                    console.log(store);
+                    var data = store.getData();
+                    console.log(data);
+                    data = null;
+                    this.syncStore(store);
 
                     // Remove Main View
                     view.destroy();

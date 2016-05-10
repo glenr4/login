@@ -21,16 +21,30 @@ Ext.define('Login.Application', {
 
     stores: [
         'Login.store.User'
+        ,
+        'Login.store.CurrentUser'
     ],
     
     launch: function () {
-
+        console.log('Application: launch');
+       // debugger;
         // It's important to note that this type of application could use
         // any type of storage, i.e., Cookies, LocalStorage, etc.
         var loggedIn;
 
         // Check to see the current value of the localStorage key
-        loggedIn = localStorage.getItem("loginValid");
+        //loggedIn = localStorage.getItem("loginValid");
+        var store = Ext.data.StoreManager.lookup('currentuserstore');
+        //console.log(store);
+
+        var data = store.getData();
+        console.log(data);
+
+        //loggedIn = data.items[0].data.loggedIn;
+        loggedIn = data.items[0].get('loggedIn');
+
+        //console.log(loggedIn);
+        //console.log(data.items[0].data.userName);
 
         // This ternary operator determines the value of the loginValid key.
         // If loginValid isn't true, we display the login window,

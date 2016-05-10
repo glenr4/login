@@ -1,13 +1,9 @@
 ﻿Ext.define('Login.store.User', {
     extend: 'Ext.data.Store',
-    //extend: 'Ext.ux.data.PagingArrayStore',
     model: 'Login.model.User',
 
     storeId: 'userstore',
     autoLoad: true,
-    //autoLoad: {start: 0, limit: 10},
-    //pageSize: 10,
-    //lastOptions: {params: {start: 0, limit: 10}},
 
     proxy: {
         type: 'localstorage',
