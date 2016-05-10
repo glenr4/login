@@ -9,6 +9,10 @@ Ext.define('Login.view.main.MainController', {
 
     alias: 'controller.main',
 
+    onEditUsers: function(){
+
+    },
+
     // Open in a form for editing
     onRowClick: function (cmp, record) {
         console.log('MainController: onRowClick');
@@ -58,13 +62,14 @@ Ext.define('Login.view.main.MainController', {
 
         var viewModel = this.getViewModel();
 
-        var mainStore = viewModel.get('userstore');
-        var storeLimit = mainStore.getCount();
+        //var mainStore = viewModel.get('userstore');
+        //var storeLimit = mainStore.getCount();
+
         var store = viewModel.get('users');
         var storePage = viewModel.get('userspage');
-        console.log(store);
+        //console.log(store);
 
-        console.log(Ext.getClassName(store));
+        //console.log(Ext.getClassName(store));
 
         store.clearFilter();
         storePage.clearFilter();
@@ -124,18 +129,6 @@ Ext.define('Login.view.main.MainController', {
 
     // Logout
     onLogout: function () {
-        // Confirm logout
-        //confirm: function (cfg, message, fn, scope) {
-        //Login.util.Msg.confirm({
-        //    buttons: Ext.Msg.YESNO,
-        //    message: 'Do you want to logout?',
-        //    handler: this.logout(id)
-        //}
-        // this should be outside cfg but does not work as expected
-        //        'Do you want to logout?',
-        //this.logout(id),
-        //this
-        //)
         var view = this.getView();
 
         Login.util.Msg.show({
@@ -160,5 +153,11 @@ Ext.define('Login.view.main.MainController', {
                 }
             }
         })
+    },
+
+    onAdmin: function () {
+        console.log("MainController: onAdmin");
+        this.getView().destroy();
+        this.redirectTo('editusers');
     }
 });

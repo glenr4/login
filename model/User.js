@@ -20,9 +20,6 @@
         email: [
             {
                 type: 'email'
-                //,
-                //matcher: '/\S+@\S+\.\S+/',
-                //message: 'Not a valid email address'
             }
         ]
     }

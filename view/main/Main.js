@@ -38,6 +38,11 @@ Ext.define('Login.view.main.Main', {
     //    displayInfo: true
     //}],
 
+    bind: {
+        //store: '{users}'
+        store: '{userspage}'
+    },
+
     columns: [
         { text: 'User Name', dataIndex: 'userName' },
         { text: 'First Name', dataIndex: 'firstName' },
@@ -73,11 +78,6 @@ Ext.define('Login.view.main.Main', {
 
     ],
 
-    bind: {
-        //store: '{users}'
-        store: '{userspage}'
-    },
-
     listeners: {
         rowdblclick: 'onRowClick'
     },
@@ -97,12 +97,20 @@ Ext.define('Login.view.main.Main', {
             flex: 0
         },
         iconCls: 'fa-th-list',
-        items: [{
-            xtype: 'button',
-            text: 'Logout',
-            margin: '10 0',
-            handler: 'onLogout'
-        }]
+        items: [
+            {
+                xtype: 'button',
+                text: 'Logout',
+                margin: '10 0',
+                handler: 'onLogout'
+            },
+            {
+                xtype: 'button',
+                text: 'Admin',
+                margin: '10 0',
+                handler: 'onAdmin'
+            }
+        ]
     },
 
     responsiveConfig: {
