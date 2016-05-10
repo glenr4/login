@@ -52,9 +52,14 @@ Ext.define('Login.view.main.MainController', {
     },
 
     // Display next page of records
+    // TODO: Need to add limit check
     onNextPage: function () {
         console.log('MainController: onNextPage');
+
         var viewModel = this.getViewModel();
+
+        var mainStore = viewModel.get('userstore');
+        var storeLimit = mainStore.getCount();
         var store = viewModel.get('users');
         var storePage = viewModel.get('userspage');
         console.log(store);
@@ -84,22 +89,36 @@ Ext.define('Login.view.main.MainController', {
     },
 
     // Display previous page of records
+    // TODO: Need to add limit check
     onPrevPage: function () { 
-        console.log('MainController: onNextPage');
-        var viewModel = this.getViewModel();
-        //console.log(viewModel);
+            console.log('MainController: onPrevPage');
+            var viewModel = this.getViewModel();
+            var store = viewModel.get('users');
+            var storePage = viewModel.get('userspage');
+            console.log(store);
 
-        var store = Ext.data.StoreManager.lookup('userstore');
-        //console.log(store);
+            console.log(Ext.getClassName(store));
 
-        var data = viewModel.getData();
-        var range = data.lastRow - data.firstRow;
-        //console.log(data);
-        data.firstRow -= range;
-        data.lastRow -= range;
+            store.clearFilter();
+            storePage.clearFilter();
+        
+            var data = viewModel.getData();
+            var range = data.lastRow - data.firstRow + 1;
+        
+            data.firstRow -= range;
+            data.lastRow -= range;
 
-        console.log(data);
-        //store.reload();   // cannot use on chained store
+            store.addFilter({
+                property: 'userId',
+                operator: ">=",
+                value: data.firstRow
+            });
+
+            storePage.addFilter({
+                property: 'userId',
+                operator: "<=",
+                value: data.lastRow
+            });
     },
 
 

@@ -7,8 +7,8 @@ Ext.define('Login.view.main.MainModel', {
 
     data: {
         name: 'Login',
-        firstRow: 10,
-        lastRow: 19
+        firstRow: 0,
+        lastRow: 9
     },
 
     // Filtering code
