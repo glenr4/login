@@ -7,8 +7,8 @@ Ext.define('Login.view.main.MainModel', {
 
     data: {
         name: 'Login',
-        firstRow: 0,
-        lastRow: 9
+        firstRow: 10,
+        lastRow: 19
     },
 
     // Filtering code
@@ -19,23 +19,38 @@ Ext.define('Login.view.main.MainModel', {
             // limit the number of records per page
             
             filters: [
-                //// cannot have two filters on the same property, the last object wins
-                // {
-                //    property : 'userId',
-                //    operator : ">=",
-                //    value: '{firstRow}'
-                // },
-                {
+                // cannot have two filters on the same property, the last object wins
+                // therefore need to chain filtered stores together to achieve this result
+                 {
                     property : 'userId',
-                    operator : "<=",
-                    value: '{lastRow}'
-                }
+                    operator : ">=",
+                    value: '{firstRow}'
+                 }
+                // ,
+                //{
+                //    property : 'userId',
+                //    operator: "<=",
+                //    value: '{lastRow}'
+                //}
             ],
             sorters : [{
                 property : "userId",
                 direction : "ASC"
             }]
-
+        },
+        userspage: {
+            source: '{users}',
+            filters: [
+                {
+                    property : 'userId',
+                    operator: "<=",
+                    value: '{lastRow}'
+                }
+            ],
+            sorters: [{
+                property: "userId",
+                direction: "ASC"
+            }]
         }
     }
 });

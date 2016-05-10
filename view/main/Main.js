@@ -74,7 +74,8 @@ Ext.define('Login.view.main.Main', {
     ],
 
     bind: {
-        store: '{users}'
+        //store: '{users}'
+        store: '{userspage}'
     },
 
     listeners: {

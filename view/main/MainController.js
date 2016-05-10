@@ -55,63 +55,32 @@ Ext.define('Login.view.main.MainController', {
     onNextPage: function () {
         console.log('MainController: onNextPage');
         var viewModel = this.getViewModel();
-        //console.log(viewModel);
-
-        //var store = Ext.data.StoreManager.lookup('userstore');
-        var view = this.getView();
-        console.log('view');
-        console.log(view);
-
-        var store = view.getStore();
-        console.log('store');
+        var store = viewModel.get('users');
+        var storePage = viewModel.get('userspage');
         console.log(store);
+
         console.log(Ext.getClassName(store));
 
-        var filters = store.getFilters();
-        console.log(filters);
-
-        console.log('Clear filters');
-        var filters = store.getFilters();
-        console.log(filters);
         store.clearFilter();
-        var filters = store.getFilters();
-        console.log(filters);
-
-
+        storePage.clearFilter();
+        
         var data = viewModel.getData();
         var range = data.lastRow - data.firstRow + 1;
-        //console.log(data);
+        
         data.firstRow += range;
         data.lastRow += range;
 
-        console.log(data);
-        //store.reload();   // cannot use on chained store
-        console.log('addFilter');
-        console.log(data.firstRow);
-        console.log(data.lastRow);
-        store.addFilter([
+        store.addFilter({
+            property: 'userId',
+            operator: ">=",
+            value: data.firstRow
+        });
 
-            // does not work either
-            function (record) {
-                if (record.userId >= 10 && record.userId <= 19) {
-                    return record;
-                }
-            }
-
-            ////Does not work
-            //{
-            //    property: 'userId',
-            //    operator: ">=",
-            //    value: data.firstRow
-            //},
-            //{
-            //    property: 'userId',
-            //    operator: "<=",
-            //    value: data.lastRow
-            //}
-        ]);
-        var filters = store.getFilters();
-        console.log(filters);
+        storePage.addFilter({
+            property: 'userId',
+            operator: "<=",
+            value: data.lastRow
+        });
     },
 
     // Display previous page of records
