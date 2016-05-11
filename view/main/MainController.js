@@ -147,7 +147,12 @@ Ext.define('Login.view.main.MainController', {
                     console.log(store);
                     var data = store.getData();
                     console.log(data);
-                    data = null;
+
+                    // clear all current user data in the store
+                    // Should only be one entry here at most but
+                    // clear all in case a previous error has
+                    // caused entries to remain
+                    store.removeAll();
                     self.syncStore(store);
 
                     // Remove Main View
@@ -168,18 +173,18 @@ Ext.define('Login.view.main.MainController', {
         this.redirectTo('editusers');
     },
 
-    syncStore: function (store) {
+    syncStore: function (store, genCallBack) {
         console.log('MainController: syncStore');
         store.sync({
             success: function (e) {
                 console.log("syncSuccess");
                 console.log(e);
             },
-            failure: function () {
+            failure: function (e) {
                 console.log("syncFailure");
                 console.log(e);
             },
-            callback: function () {
+            callback: function (e) {
                 console.log("callback");
             }
         });
