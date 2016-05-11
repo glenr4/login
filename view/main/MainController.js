@@ -128,9 +128,9 @@ Ext.define('Login.view.main.MainController', {
 
 
     // Logout
-    //TODO: not working with sessionstorage yet
     onLogout: function () {
         var view = this.getView();
+        var self = this;
 
         Login.util.Msg.show({
             buttons: Ext.Msg.YESNO,
@@ -148,7 +148,7 @@ Ext.define('Login.view.main.MainController', {
                     var data = store.getData();
                     console.log(data);
                     data = null;
-                    this.syncStore(store);
+                    self.syncStore(store);
 
                     // Remove Main View
                     view.destroy();
@@ -166,5 +166,28 @@ Ext.define('Login.view.main.MainController', {
         console.log("MainController: onAdmin");
         this.getView().destroy();
         this.redirectTo('editusers');
+    },
+
+    syncStore: function (store) {
+        console.log('MainController: syncStore');
+        store.sync({
+            success: function (e) {
+                console.log("syncSuccess");
+                console.log(e);
+            },
+            failure: function () {
+                console.log("syncFailure");
+                console.log(e);
+            },
+            callback: function () {
+                console.log("callback");
+                console.log(store);
+                console.log('Load store');
+                store.load();
+                console.log(store);
+
+            }
+        });
     }
+
 });
