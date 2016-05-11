@@ -40,11 +40,14 @@ Ext.define('Login.Application', {
         var data = store.getData();
         console.log(data);
 
-        //loggedIn = data.items[0].data.loggedIn;
-        loggedIn = data.items[0].get('loggedIn');
-
-        //console.log(loggedIn);
-        //console.log(data.items[0].data.userName);
+        // Check to see if Current User data exists
+        if (data.items[0]) {
+            console.log('Application: have data');
+            loggedIn = data.items[0].get('loggedIn');
+        } else {
+            console.log('Application: no data');
+            loggedIn = false;
+        }
 
         // This ternary operator determines the value of the loginValid key.
         // If loginValid isn't true, we display the login window,

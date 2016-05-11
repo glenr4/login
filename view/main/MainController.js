@@ -181,11 +181,6 @@ Ext.define('Login.view.main.MainController', {
             },
             callback: function () {
                 console.log("callback");
-                console.log(store);
-                console.log('Load store');
-                store.load();
-                console.log(store);
-
             }
         });
     }
