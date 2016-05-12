@@ -155,13 +155,17 @@ Ext.define('Login.view.main.MainController', {
                     // remove user
                     Login.util.UserCtrl.logout();
 
-                    // Remove Main View
-                    view.destroy();
+                    if (!Login.util.UserCtrl.getLoginState()) {
+                        // Remove Main View
+                        view.destroy();
 
-                    // Add the Login Window
-                    Ext.create({
-                        xtype: 'loginview'
-                    });
+                        // Add the Login Window
+                        Ext.create({
+                            xtype: 'loginview'
+                        });
+                    } else {
+                        console.log('MainController: failed to update current user store');
+                    }
                 }
             }
         })

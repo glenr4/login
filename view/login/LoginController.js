@@ -5,15 +5,20 @@
 
     onLoginClick: function () {
         console.log('LoginController: onLoginClick');
-        //Check user credentials
-        var userStore = Ext.data.StoreManager.lookup('userstore');
-        var username = this.lookupReference('username').value;
-        var password = this.lookupReference('password').value;
-        var userRole = 'administrator'; // TODO: update data with
-        // userRole field before this can be implemented
 
+        var userStore = Ext.data.StoreManager.lookup('userstore');
+
+        // Get field data
+        var userName = this.lookupReference('username').value;
+        var password = this.lookupReference('password').value;
+
+        // TODO: update data with
+        // userRole field before this can be implemented
+        var userRole = 'administrator'; 
+
+        // Check the userstore to see if the user login details are correct
         var match = userStore.findBy(function (record, id) {
-            if (record.get('userName') == username &&
+            if (record.get('userName') == userName &&
                 record.get('password') == password) {
                 console.log('match: true');
                 //userRole = record.get('userRole');
@@ -22,42 +27,49 @@
         });
         console.log(match);
 
+        // Store logged in user information in the currentuserstore
         if (match != -1) {
             console.log('if match true');
-            // Store current user information
-            var store = Ext.data.StoreManager.lookup('currentuserstore');
-            console.log(store);
-            var data = store.getData();
-            console.log(data);
+        
+            Login.util.UserCtrl.addLoggedIn(userName, userRole);
 
-            console.log("LoginController: store userName");
-            data.userName = username;
-            data.userRole = userRole;
-            data.loggedIn = true;
-            data.loginTime = Date();
-            console.log(data);
+            //var store = Ext.data.StoreManager.lookup('currentuserstore');
+            //console.log(store);
+            //var data = store.getData();
+            //console.log(data);
 
-            console.log('LoginController: login');
-            var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.CurrentUser'));
-            console.log(newRecord);
+            //console.log("LoginController: store userName");
+            //data.userName = username;
+            //data.userRole = userRole;
+            //data.loggedIn = true;
+            //data.loginTime = Date();
+            //console.log(data);
 
-            newRecord.data = data;
-            store.add(newRecord);
-            console.log(newRecord);
+            //console.log('LoginController: login');
+            //var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.CurrentUser'));
+            //console.log(newRecord);
 
-            this.syncStore(store);
+            //newRecord.data = data;
+            //store.add(newRecord);
+            //console.log(newRecord);
+
+            //this.syncStore(store);
 
             // Set the localStorage value to true
             // In a real App use a Store and Model
             //localStorage.setItem("loginValid", true);
 
-            // Remove Login Window
-            this.getView().destroy();
+            if (Login.util.UserCtrl.getLoginState()) {
+                // Remove Login Window
+                this.getView().destroy();
 
-            // Add the main view to the viewport
-            Ext.create({
-                xtype: 'app-main'
-            });
+                // Add the main view to the viewport
+                Ext.create({
+                    xtype: 'app-main'
+                });
+            } else {
+                console.log('LoginController: failed to update current user store');
+            };
         } else {
             console.log('if match false');
             //Ext.Msg.show({
@@ -68,23 +80,24 @@
                 icon: Ext.Msg.WARNING
             });
         };
-    },
-    syncStore: function (store) {
-        console.log('LoginController: syncStore');
-        store.sync({
-            success: function (e) {
-                console.log("syncSuccess");
-                console.log(e);
-            },
-            failure: function () {
-                console.log("syncFailure");
-                console.log(e);
-            },
-            callback: function () {
-                console.log("callback");
-            }
-        });
     }
+    //,
+    //syncStore: function (store) {
+    //    console.log('LoginController: syncStore');
+    //    store.sync({
+    //        success: function (e) {
+    //            console.log("syncSuccess");
+    //            console.log(e);
+    //        },
+    //        failure: function () {
+    //            console.log("syncFailure");
+    //            console.log(e);
+    //        },
+    //        callback: function () {
+    //            console.log("callback");
+    //        }
+    //    });
+    //}
 
 });
 
