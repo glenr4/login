@@ -6,7 +6,6 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('Login.view.main.Main', {
-    //extend: 'Ext.tab.Panel',
     extend: 'Ext.grid.Panel',
     xtype: 'app-main',
 
@@ -29,17 +28,7 @@ Ext.define('Login.view.main.Main', {
     autoLoad: true,
     ui: 'navigation',
 
-    //dockedItems: [{
-    //    xtype: 'pagingtoolbar',
-    //    //bind: {
-    //    store: 'userstore',
-    //    //},
-    //    dock: 'bottom',
-    //    displayInfo: true
-    //}],
-
     bind: {
-        //store: '{users}'
         store: '{userspage}'
     },
 

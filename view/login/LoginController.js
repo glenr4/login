@@ -32,47 +32,26 @@
             console.log('if match true');
         
             Login.util.UserCtrl.addLoggedIn(userName, userRole);
-
-            //var store = Ext.data.StoreManager.lookup('currentuserstore');
-            //console.log(store);
-            //var data = store.getData();
-            //console.log(data);
-
-            //console.log("LoginController: store userName");
-            //data.userName = username;
-            //data.userRole = userRole;
-            //data.loggedIn = true;
-            //data.loginTime = Date();
-            //console.log(data);
-
-            //console.log('LoginController: login');
-            //var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.CurrentUser'));
-            //console.log(newRecord);
-
-            //newRecord.data = data;
-            //store.add(newRecord);
-            //console.log(newRecord);
-
-            //this.syncStore(store);
-
-            // Set the localStorage value to true
-            // In a real App use a Store and Model
-            //localStorage.setItem("loginValid", true);
-
+            
+            // check if the current user store was updated
+            // correctly, if so then load the main view
             if (Login.util.UserCtrl.getLoginState()) {
                 // Remove Login Window
+                console.log('Remove Login Window');
+                console.log(this.getView());
                 this.getView().destroy();
 
                 // Add the main view to the viewport
-                Ext.create({
-                    xtype: 'app-main'
-                });
+                //Ext.create({
+                //    xtype: 'app-main'
+                //});
+                console.log('LoginController: redirecting to main');
+                this.redirectTo('main');
             } else {
                 console.log('LoginController: failed to update current user store');
             };
         } else {
             console.log('if match false');
-            //Ext.Msg.show({
             Login.util.Msg.show({
                 title: 'Login Details Not Valid',
                 message: 'Please check your user name and password and try again.',
@@ -81,23 +60,5 @@
             });
         };
     }
-    //,
-    //syncStore: function (store) {
-    //    console.log('LoginController: syncStore');
-    //    store.sync({
-    //        success: function (e) {
-    //            console.log("syncSuccess");
-    //            console.log(e);
-    //        },
-    //        failure: function () {
-    //            console.log("syncFailure");
-    //            console.log(e);
-    //        },
-    //        callback: function () {
-    //            console.log("callback");
-    //        }
-    //    });
-    //}
-
 });
 

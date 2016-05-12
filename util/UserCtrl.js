@@ -6,14 +6,14 @@
     },
 
     // Get reference to the store for all functions to use
-    init: function() {
+    init: function () {
         console.log('UserCtrl: init');
         this.store = Ext.data.StoreManager.lookup('currentuserstore');
     },
 
     logout: function () {
         console.log('UserCtrl: logout');
-        //var store = Ext.data.StoreManager.lookup('currentuserstore');
+
         var data = this.store.getData();
 
         // clear all current user data in the store
@@ -24,30 +24,23 @@
         this.syncStore(this.store);
 
         this.store.getProxy().clear();
-
-        
-        console.log(this.store);
     },
 
     // If a user successfully authenticates, then add them into the current user store
     addLoggedIn: function (userName, userRole) {
         console.log('UserCtrl: setLoginState');
         var data = this.store.getData();
-        //this.store.getProxy().clear();
-        //this.syncStore(this.store);
 
         data.userName = userName;
         data.userRole = userRole;
         data.loggedIn = true;
         data.loginTime = Date();
- 
+
         var newRecord = Ext.create(Ext.data.schema.Schema.lookupEntity('Login.model.CurrentUser'));
         newRecord.data = data;
         this.store.add(newRecord);
 
         this.syncStore(this.store);
-        //data = this.store.getData();
-        //console.log(data);
     },
 
     getLoginState: function () {
@@ -58,8 +51,7 @@
         // Check to see if Current User data exists
         if (data.items[0]) {
             console.log('UserCtrl: getLoginState: have data');
-            //loggedIn = data.items[0].get('loggedIn');
-            
+
             return data.items[0].get('loggedIn');
         } else {
             console.log('UserCtrl: getLoginState: no data');
@@ -67,6 +59,9 @@
         }
     },
 
+    // Sync to store and check in the console that this function
+    // came back with a response. A response is not guaranteed
+    // if there is an error which will usually not be shown to the developer
     syncStore: function (store) {
         console.log('UserCtrl: syncStore');
         store.sync({
@@ -82,7 +77,4 @@
             }
         });
     }
-
-
-
-})
+});

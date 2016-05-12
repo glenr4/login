@@ -1,15 +1,9 @@
-/**
- * This class is the controller for the main view for the application. It is specified as
- * the "controller" of the Main view class.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('Login.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.main',
 
-    onEditUsers: function(){
+    onAdmin: function(){
 
     },
 
@@ -62,14 +56,8 @@ Ext.define('Login.view.main.MainController', {
 
         var viewModel = this.getViewModel();
 
-        //var mainStore = viewModel.get('userstore');
-        //var storeLimit = mainStore.getCount();
-
         var store = viewModel.get('users');
         var storePage = viewModel.get('userspage');
-        //console.log(store);
-
-        //console.log(Ext.getClassName(store));
 
         store.clearFilter();
         storePage.clearFilter();
@@ -129,8 +117,13 @@ Ext.define('Login.view.main.MainController', {
 
     // Logout
     onLogout: function () {
+        console.log('MainController: onLogout');
+
         var view = this.getView();
         var self = this;
+
+        console.log(view);
+
 
         Login.util.Msg.show({
             buttons: Ext.Msg.YESNO,
@@ -142,27 +135,19 @@ Ext.define('Login.view.main.MainController', {
                 if (btn === 'yes') {
                     console.log("MainController: Logout: yes clicked");
 
-                    //var store = Ext.data.StoreManager.lookup('currentuserstore');
-                    //var data = store.getData();
-
-                    //// clear all current user data in the store
-                    //// Should only be one entry here at most but
-                    //// clear all in case a previous error has
-                    //// caused entries to remain
-                    //store.removeAll();
-                    //self.syncStore(store);
-
                     // remove user
                     Login.util.UserCtrl.logout();
 
                     if (!Login.util.UserCtrl.getLoginState()) {
                         // Remove Main View
-                        view.destroy();
+                        //view.destroy();
+
+                        self.redirectTo('login');
 
                         // Add the Login Window
-                        Ext.create({
-                            xtype: 'loginview'
-                        });
+                        //Ext.create({
+                        //    xtype: 'loginview'
+                        //});
                     } else {
                         console.log('MainController: failed to update current user store');
                     }
@@ -171,28 +156,10 @@ Ext.define('Login.view.main.MainController', {
         })
     },
 
+    // Route to admin page
     onAdmin: function () {
         console.log("MainController: onAdmin");
         this.getView().destroy();
-        this.redirectTo('editusers');
+        this.redirectTo('admin');
     }
-    //,
-
-    //syncStore: function (store, genCallBack) {
-    //    console.log('MainController: syncStore');
-    //    store.sync({
-    //        success: function (e) {
-    //            console.log("syncSuccess");
-    //            console.log(e);
-    //        },
-    //        failure: function (e) {
-    //            console.log("syncFailure");
-    //            console.log(e);
-    //        },
-    //        callback: function (e) {
-    //            console.log("callback");
-    //        }
-    //    });
-    //}
-
 });

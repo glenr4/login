@@ -1,8 +1,7 @@
-/**
- * The main application class. An instance of this class is created by app.js when it
- * calls Ext.application(). This is the ideal place to handle application launch and
- * initialization details.
- */
+// Launch the application
+// Bring up a login window if not already logged in,
+// if logged in then open main view
+
 Ext.define('Login.Application', {
     extend: 'Ext.app.Application',
     
@@ -29,46 +28,20 @@ Ext.define('Login.Application', {
     launch: function () {
         console.log('Application: launch');
 
+        // Initialise this utility object
         Login.util.UserCtrl.init();
 
-       // debugger;
-        // It's important to note that this type of application could use
-        // any type of storage, i.e., Cookies, LocalStorage, etc.
-        var loggedIn = Login.util.UserCtrl.getLoginState();
+        // Load the home page
+        var ctrl = this.getController('Login.controller.Route');
+        ctrl.redirectTo('', true);
 
-        //// Check to see the current value of the localStorage key
-        ////loggedIn = localStorage.getItem("loginValid");
-        //var store = Ext.data.StoreManager.lookup('currentuserstore');
-        ////console.log(store);
+        //// Check the users current login state
+        //var loggedIn = Login.util.UserCtrl.getLoginState();
 
-        //var data = store.getData();
-        //console.log(data);
-
-        //// Check to see if Current User data exists
-        //if (data.items[0]) {
-        //    console.log('Application: have data');
-        //    loggedIn = data.items[0].get('loggedIn');
-        //} else {
-        //    console.log('Application: no data');
-        //    loggedIn = false;
-        //}
-
-        // This ternary operator determines the value of the loginValid key.
-        // If loginValid isn't true, we display the login window,
-        // otherwise, we display the main view
-        Ext.create({
-            xtype: loggedIn ? 'app-main' : 'loginview'
-        });
-
-    },
-
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
+        //// If loginValid isn't true, we display the login window,
+        //// otherwise, we display the main view
+        //Ext.create({
+        //    xtype: loggedIn ? 'app-main' : 'loginview'
+        //});
     }
 });

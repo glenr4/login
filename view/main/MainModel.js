@@ -6,7 +6,7 @@ Ext.define('Login.view.main.MainModel', {
     requires: ['Login.model.User'],
 
     data: {
-        name: 'Login',
+        name: 'Main', 
         firstRow: 0,
         lastRow: 9
     },
@@ -17,7 +17,6 @@ Ext.define('Login.view.main.MainModel', {
             source: 'userstore', // this is the id field from the store
             
             // limit the number of records per page
-            
             filters: [
                 // cannot have two filters on the same property, the last object wins
                 // therefore need to chain filtered stores together to achieve this result
@@ -26,12 +25,6 @@ Ext.define('Login.view.main.MainModel', {
                     operator : ">=",
                     value: '{firstRow}'
                  }
-                // ,
-                //{
-                //    property : 'userId',
-                //    operator: "<=",
-                //    value: '{lastRow}'
-                //}
             ],
             sorters : [{
                 property : "userId",

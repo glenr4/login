@@ -9,8 +9,4 @@
         { name: 'loginTime' }
 
     ]
-    //,
-    //data: {
-    //    //record: null
-    //}
 })

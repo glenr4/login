@@ -7,7 +7,6 @@
 
     proxy: {
         type: 'sessionstorage',
-        //type: 'localstorage',
         id: 'currentuserstorage',
         reader: {
             type: 'json'
@@ -16,6 +15,4 @@
             type: 'json'
         }
     }
-    //,
-    //data: [{}]
 });
