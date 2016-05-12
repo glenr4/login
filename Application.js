@@ -11,8 +11,10 @@ Ext.define('Login.Application', {
     requires: [
         'Login.view.main.Main',
         'Login.view.login.Login',
+        'Login.view.admin.Admin',
+
         'Login.util.Msg',
-        'Login.view.admin.Admin' 
+        'Login.util.UserCtrl'
     ],
 
     controllers: [
@@ -20,34 +22,36 @@ Ext.define('Login.Application', {
     ],
 
     stores: [
-        'Login.store.User'
-        ,
+        'Login.store.User',
         'Login.store.CurrentUser'
     ],
     
     launch: function () {
         console.log('Application: launch');
+
+        Login.util.UserCtrl.init();
+
        // debugger;
         // It's important to note that this type of application could use
         // any type of storage, i.e., Cookies, LocalStorage, etc.
-        var loggedIn;
+        var loggedIn = Login.util.UserCtrl.getLoginState();
 
-        // Check to see the current value of the localStorage key
-        //loggedIn = localStorage.getItem("loginValid");
-        var store = Ext.data.StoreManager.lookup('currentuserstore');
-        //console.log(store);
+        //// Check to see the current value of the localStorage key
+        ////loggedIn = localStorage.getItem("loginValid");
+        //var store = Ext.data.StoreManager.lookup('currentuserstore');
+        ////console.log(store);
 
-        var data = store.getData();
-        console.log(data);
+        //var data = store.getData();
+        //console.log(data);
 
-        // Check to see if Current User data exists
-        if (data.items[0]) {
-            console.log('Application: have data');
-            loggedIn = data.items[0].get('loggedIn');
-        } else {
-            console.log('Application: no data');
-            loggedIn = false;
-        }
+        //// Check to see if Current User data exists
+        //if (data.items[0]) {
+        //    console.log('Application: have data');
+        //    loggedIn = data.items[0].get('loggedIn');
+        //} else {
+        //    console.log('Application: no data');
+        //    loggedIn = false;
+        //}
 
         // This ternary operator determines the value of the loginValid key.
         // If loginValid isn't true, we display the login window,

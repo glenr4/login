@@ -141,19 +141,19 @@ Ext.define('Login.view.main.MainController', {
                 console.log(btn);
                 if (btn === 'yes') {
                     console.log("MainController: Logout: yes clicked");
-                    // Remove the localStorage key/value
-                    //localStorage.removeItem('loginValid');
-                    var store = Ext.data.StoreManager.lookup('currentuserstore');
-                    console.log(store);
-                    var data = store.getData();
-                    console.log(data);
 
-                    // clear all current user data in the store
-                    // Should only be one entry here at most but
-                    // clear all in case a previous error has
-                    // caused entries to remain
-                    store.removeAll();
-                    self.syncStore(store);
+                    //var store = Ext.data.StoreManager.lookup('currentuserstore');
+                    //var data = store.getData();
+
+                    //// clear all current user data in the store
+                    //// Should only be one entry here at most but
+                    //// clear all in case a previous error has
+                    //// caused entries to remain
+                    //store.removeAll();
+                    //self.syncStore(store);
+
+                    // remove user
+                    Login.util.UserCtrl.logout();
 
                     // Remove Main View
                     view.destroy();
@@ -171,23 +171,24 @@ Ext.define('Login.view.main.MainController', {
         console.log("MainController: onAdmin");
         this.getView().destroy();
         this.redirectTo('editusers');
-    },
-
-    syncStore: function (store, genCallBack) {
-        console.log('MainController: syncStore');
-        store.sync({
-            success: function (e) {
-                console.log("syncSuccess");
-                console.log(e);
-            },
-            failure: function (e) {
-                console.log("syncFailure");
-                console.log(e);
-            },
-            callback: function (e) {
-                console.log("callback");
-            }
-        });
     }
+    //,
+
+    //syncStore: function (store, genCallBack) {
+    //    console.log('MainController: syncStore');
+    //    store.sync({
+    //        success: function (e) {
+    //            console.log("syncSuccess");
+    //            console.log(e);
+    //        },
+    //        failure: function (e) {
+    //            console.log("syncFailure");
+    //            console.log(e);
+    //        },
+    //        callback: function (e) {
+    //            console.log("callback");
+    //        }
+    //    });
+    //}
 
 });
