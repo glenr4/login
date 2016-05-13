@@ -3,6 +3,10 @@ Ext.define('Login.view.main.MainController', {
 
     alias: 'controller.main',
 
+    mixins: [
+        'Login.mixin.Common'
+    ],
+    
     onAdmin: function(){
 
     },
@@ -142,7 +146,8 @@ Ext.define('Login.view.main.MainController', {
                         // Remove Main View
                         //view.destroy();
 
-                        self.redirectTo('login');
+                        //self.redirectTo('login');
+                        self.createView(self.getView().getXType(), 'loginview');
 
                         // Add the Login Window
                         //Ext.create({

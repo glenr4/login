@@ -3,6 +3,16 @@
 
     alias: 'controller.login',
 
+    mixins: [
+        'Login.mixin.Common'
+    ],
+
+
+
+    onDestroy: function () {
+        console.log('LoginCOntroller: destroy event fired');
+    },
+
     onLoginClick: function () {
         console.log('LoginController: onLoginClick');
 
@@ -37,16 +47,21 @@
             // correctly, if so then load the main view
             if (Login.util.UserCtrl.getLoginState()) {
                 // Remove Login Window
-                console.log('Remove Login Window');
-                console.log(this.getView());
-                this.getView().destroy();
+                //console.log('Remove Login Window');
+                //console.log(this.getView());
+                //this.getView().destroy();
 
                 // Add the main view to the viewport
                 //Ext.create({
                 //    xtype: 'app-main'
                 //});
                 console.log('LoginController: redirecting to main');
-                this.redirectTo('main');
+                //this.redirectTo('main');
+
+                //this.createView(this.getView(), 'app-main');
+                this.createView(this.getView().getXType(), 'app-main');
+
+
             } else {
                 console.log('LoginController: failed to update current user store');
             };

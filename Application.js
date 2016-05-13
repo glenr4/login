@@ -32,8 +32,9 @@ Ext.define('Login.Application', {
         Login.util.UserCtrl.init();
 
         // Load the home page
-        var ctrl = this.getController('Login.controller.Route');
-        ctrl.redirectTo('', true);
+        //var ctrl = this.getController('Login.controller.Route');
+        //ctrl.redirectTo('', true);
+        this.redirectTo('home', true);
 
         //// Check the users current login state
         //var loggedIn = Login.util.UserCtrl.getLoginState();

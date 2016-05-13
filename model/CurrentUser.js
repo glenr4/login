@@ -1,6 +1,6 @@
 ﻿Ext.define('Login.model.CurrentUser', {
     extend: 'Ext.data.Model',
-    idProperty: 'userId',
+    idProperty: 'userName',
 
     fields: [
         { name: 'userName' },

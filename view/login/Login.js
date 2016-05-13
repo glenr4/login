@@ -10,8 +10,14 @@
     controller: 'login',
     viewModel: 'login',
 
-    closable: false,
+    //singleton: true,
+    closable: true,
+    closeAction: 'destroy',
     autoShow: true,
+
+    listeners: {
+        destroy: 'onDestroy'
+    },
 
     title: 'Login',
     modelValidation: true,  // link the Model's validation rules to the form

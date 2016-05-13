@@ -3,10 +3,15 @@
 
     alias: 'controller.admin',
 
+    mixins: [
+        'Login.mixin.Common'
+    ],
+
     onMain: function () {
         console.log("AdminController: onMain");
-        this.getView().destroy();
-        this.redirectTo('main');
+        //this.getView().destroy();
+        //this.redirectTo('main');
+        this.createView(this.getView().getXType(), 'app-main');
     },
 
     // Logout
@@ -35,13 +40,15 @@
 
                     if (!Login.util.UserCtrl.getLoginState()) {
                         // Remove current View
-                        view.destroy();
+                        //view.destroy();
 
-                        self.redirectTo('login');
+                        //self.redirectTo('login');
                         //// Add the Login Window
                         //Ext.create({
                         //    xtype: 'loginview'
                         //});
+
+                        self.createView(self.getView().getXType(), 'loginview');
                     } else {
                         console.log('AdminController: failed to update current user store');
                     }

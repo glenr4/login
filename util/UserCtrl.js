@@ -20,7 +20,8 @@
         // Should only be one entry here at most but
         // clear all in case a previous error has
         // caused entries to remain
-        this.store.removeAll(); // not clearing all records
+        this.store.removeAll(true); // not clearing all records
+        // this will work on other proxy types but doesn't seem to work for session storage
         this.syncStore(this.store);
 
         this.store.getProxy().clear();

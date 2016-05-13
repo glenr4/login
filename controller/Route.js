@@ -3,11 +3,29 @@ Ext.define('Login.controller.Route', {
     extend: 'Ext.app.Controller',
 
     routes: {
-        '': 'routeToHome',
-        'main': 'routeToMain',
+        'home': 'routeToHome',
+        'app-main': { action: 'routeToMain' },
+            //before: 'isLoggedIn'},
         'admin': 'routeToAdmin',
-        'login': 'routeToLogin'
+        'loginview': 'routeToLogin'
     },
+
+    //isLoggedIn: function () {
+    //    var loggedIn = Login.util.UserCtrl.getLoginState();
+
+    //    // If loginValid isn't true, we display the login window,
+    //    // otherwise, we display the main view
+    //    //Ext.create({
+    //    //    xtype: loggedIn ? 'app-main' : 'loginview'
+    //    //});
+
+    //    if (loggedIn) {
+    //        this.redirectTo('app-main');
+    //    } else {
+    //        this.redirectTo('loginview');
+    //        //this.routeToLogin();
+    //    };
+    //},
 
     routeToHome: function () {
         console.log("Route: routeToHome");
@@ -21,14 +39,16 @@ Ext.define('Login.controller.Route', {
         //});
 
         if (loggedIn) {
-            this.redirectTo('main');
+            this.redirectTo('app-main');
         } else {
-            this.redirectTo('login');
+            this.redirectTo('loginview');
+            //this.routeToLogin();
         };
     },
 
     routeToMain: function () {
         console.log("Route: routeToMain");
+        // call generic create view function that destroys
         Ext.create({
             xtype: 'app-main'
         });
@@ -46,6 +66,7 @@ Ext.define('Login.controller.Route', {
         Ext.create({
             xtype: 'loginview'
         });
+
     }
 });
 
